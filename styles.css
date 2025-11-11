@@ -71,8 +71,9 @@ body {
     white-space: nowrap; 
     flex-shrink: 0;
     margin-left: 5px; 
-    /* Sobrescribe el padding del .nav-link base para el botón */
+    /* AJUSTE CLAVE para evitar que el texto se corte en el botón */
     padding: 10px 15px !important; 
+    line-height: 1; /* Asegura el espacio vertical */
 }
 .cta-button-header:hover {
     background-color: #2a3c6b; 
@@ -399,7 +400,7 @@ body {
     margin-bottom: 5px;
 }
 
-/* --- 4. SECCIÓN CONTACTO --- */
+/* --- 4. SECCIÓN CONTACTO (Desktop) --- */
 #contacto {
     background-color: #1a2a4a; 
     color: white;
@@ -415,14 +416,21 @@ body {
     max-width: 900px; 
     margin: 0 auto; 
     display: flex;
-    flex-direction: column; 
+    /* Cambio clave para Desktop: alinear en fila y centrar elementos */
+    flex-direction: row; 
+    justify-content: center;
     align-items: center; 
-    gap: 30px; 
+    gap: 50px; /* Aumento del espacio entre imagen y texto */
+    text-align: left; /* Asegura que el texto se alinee a la izquierda */
 }
 .contact-info {
     flex: 1;
-    text-align: center;
+    text-align: left; /* Alineación del texto a la izquierda en desktop */
     min-width: 300px; 
+}
+.contact-info p {
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 .contact-info strong {
     color: #a3b7e0; 
@@ -443,6 +451,9 @@ body {
     max-width: 150px; 
     height: auto;
     border-radius: 8px; 
+    /* Eliminar cualquier ancho fijo que cause problemas */
+    width: auto;
+    flex-shrink: 0;
 }
 
 /* ======================================= */
@@ -536,9 +547,8 @@ body {
         flex-basis: 100%; /* Ocupa todo el ancho */
     }
 
-    /* --- TABLA DE ESPECIFICACIONES (El bloque clave para la corrección de la imagen) --- */
+    /* --- TABLA DE ESPECIFICACIONES --- */
     .spec-table-container {
-        /* Permite el scroll horizontal si la tabla es demasiado ancha (aunque ya está simplificada) */
         overflow-x: auto;
     }
     .spec-table-container table,
@@ -549,23 +559,21 @@ body {
     .spec-table-container tr {
         display: block;
     }
-    /* Estilo para simular una lista en la tabla */
     .spec-table-container thead tr {
-        display: none; /* Oculta la cabecera de la tabla */
+        display: none; 
     }
     .spec-table-container tr {
         border: 1px solid #ccc;
         margin-bottom: 20px;
         border-radius: 8px;
-        background-color: white !important; /* Asegura el fondo blanco */
+        background-color: white !important; 
     }
     .spec-table-container td {
         border-bottom: 1px solid #eee;
         position: relative;
-        padding-left: 50%; /* Espacio para la etiqueta */
+        padding-left: 50%; 
         text-align: right;
     }
-    /* Muestra el contenido de <td> como etiqueta usando el atributo data-label del HTML */
     .spec-table-container td:before {
         content: attr(data-label);
         position: absolute;
@@ -580,18 +588,29 @@ body {
     .spec-table-container td:first-child {
         text-align: right;
     }
-    /* El primer td de cada fila no necesita el pseudo-elemento :before ya que ya es el aspecto */
     .spec-table-container td:first-child:before {
         content: ''; 
         width: 0;
         padding: 0;
     }
     .spec-table-container tr:last-child td:last-child {
-        border-bottom: none; /* Elimina la línea inferior del último elemento */
+        border-bottom: none; 
     }
 
-
-    /* --- SECCIÓN CONTACTO --- */
+    /* --- SECCIÓN CONTACTO (Móvil) --- */
+    .contact-content-wrapper {
+        /* Cambio clave: Forzar a columna en móvil */
+        flex-direction: column; 
+        gap: 20px;
+    }
+    .contact-image {
+        /* Centrar la imagen en móvil */
+        margin: 0 auto;
+        display: block;
+    }
+    .contact-info {
+        text-align: center; /* Centrar el texto en móvil */
+    }
     .contact-info strong {
         font-size: 1rem;
     }
