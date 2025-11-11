@@ -1,0 +1,446 @@
+/* --- ESTILOS BASE --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding-top: 70px; 
+    background-color: #f8f8f8;
+    color: #333;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+.content-section {
+    padding: 80px 10%;
+    text-align: left;
+    min-height: 400px;
+}
+
+/* --- HEADER Y NAVEGACIÓN --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #3a538a; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    height: 100%;
+    position: relative; 
+}
+.header-logo {
+    width: 150px;
+    height: auto;
+    max-height: 50px; 
+    flex-shrink: 0;
+    margin-right: 150px; 
+}
+.nav-links-container {
+    display: flex;
+    align-items: center;
+    gap: 0; 
+    flex-shrink: 0;
+    padding-right: 50px; 
+}
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 30px; 
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+.nav-link:hover {
+    color: #1a2a4a; 
+}
+/* Estilo específico para el botón "Comprar" (CTA) */
+.cta-button-header {
+    background-color: #1a2a4a; 
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s;
+    white-space: nowrap; 
+    flex-shrink: 0;
+    margin-left: 5px; 
+    /* Sobrescribe el padding del .nav-link base para el botón */
+    padding: 10px 15px !important; 
+}
+.cta-button-header:hover {
+    background-color: #2a3c6b; 
+    transform: scale(1.05);
+}
+.mute-button {
+    right: 20px; 
+    position: absolute;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem; 
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.2s;
+    line-height: 1; 
+}
+.mute-button:hover {
+    color: #ccc;
+}
+
+/* --- SECCIÓN HERO (ANIMACIÓN) --- */
+.hero-section {
+    min-height: calc(100vh - 70px); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #eef2f7;
+}
+.logo-animation-wrapper {
+    position: relative;
+    width: 800px; 
+    height: 150px; 
+}
+.logo-image-text {
+    position: absolute;
+    opacity: 0;
+    max-width: 100%;
+    height: auto;
+    bottom: 0px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+.logo-image-car {
+    position: absolute;
+    left: -400px; 
+    opacity: 0;
+    width: 400px; 
+    height: auto;
+    top: -50px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+}
+.logo-image-text.animate {
+    animation: fadeInImageText 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+.logo-image-car.animate {
+    animation: slideInCar 1.5s ease-out forwards;
+    animation-delay: 1s; 
+}
+@keyframes fadeInImageText {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    100% { opacity: 1; transform: translate(-50%, 0); }
+}
+@keyframes slideInCar {
+    0% { left: -400px; opacity: 0; }
+    50% { opacity: 1; }
+    100% { left: 50%; transform: translateX(-50%); opacity: 1; }
+}
+
+/* --- ESTILOS COMPARTIDOS (TÍTULOS DE SECCIÓN) --- */
+.content-section h2 {
+    color: #1a2a4a; 
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    position: relative;
+    text-align: center;
+}
+
+.content-section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #3a538a; 
+    margin: 10px auto 30px;
+    border-radius: 2px;
+}
+
+/* Subtítulos de producto (h3) */
+.product-subtitle {
+    color: #3a538a; 
+    margin-top: 50px; 
+    margin-bottom: 25px; 
+    font-size: 1.8rem; 
+    position: relative;
+    text-align: center;
+}
+
+.product-subtitle::after {
+    content: '';
+    display: block;
+    width: 60px; 
+    height: 3px;
+    background-color: #3a538a; 
+    margin: 8px auto 0;
+    border-radius: 1.5px;
+}
+
+/* Contenedores de contenido (cajas) */
+.product-intro-box, .features-list-box {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+.product-intro-box {
+    background-color: #f5f5f5; 
+    text-align: center;
+}
+.product-intro-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+.features-list-box {
+    background-color: #eef2f7; 
+    text-align: left;
+}
+.features-list-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* Icono de check para la sección de Presentación */
+.features-list-box li {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%233a538a' class='bi bi-check-circle-fill' viewBox='0 0 16 16'%3E%3Cpath d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z'/%3E%3C/svg%3E") no-repeat left center;
+    background-size: 16px;
+    padding-left: 25px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-weight: 500; 
+}
+
+/* Estilo para la tabla de especificaciones */
+.spec-table-container {
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden; 
+}
+
+.spec-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white; 
+    text-align: left;
+    font-size: 1rem;
+}
+
+.spec-table-container th {
+    background-color: #3a538a; 
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.spec-table-container td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.spec-table-container tr:nth-child(even) {
+    background-color: #f8f8f8; 
+}
+
+.spec-table-container tr:hover {
+    background-color: #eef2f7; 
+}
+
+.spec-table-container td:first-child {
+    font-weight: bold;
+    color: #1a2a4a;
+    width: 30%; 
+}
+
+/* --- 1. SECCIÓN DE PRESENTACIÓN --- */
+#presentacion { 
+    background-color: white; 
+    text-align: center;
+}
+
+/* --- 2. SECCIÓN DE CARACTERÍSTICAS --- */
+#caracteristicas { 
+    background-color: #f0f0f0; 
+    text-align: center;
+}
+
+/* --- Estilo MEJORADO para el bloque de beneficios en #caracteristicas --- */
+.features-text {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    text-align: left;
+    padding: 30px; 
+    background-color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+}
+.features-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #1a2a4a; 
+    font-weight: 500; 
+    margin-bottom: 30px;
+}
+.features-text ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.features-text li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 30px; 
+    font-weight: 600; 
+    color: #333;
+}
+.features-text li::before {
+    content: "";
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%233a538a' class='bi bi-shield-lock-fill' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 0c-.69 0-1.843.265-2.928.707A3.593 3.593 0 0 0 5.176 1H5C1.815 1 0 5.488 0 8a8.214 8.214 0 0 0 1.25 4.36l-.375-.24a.5.5 0 0 1 .4-.8l.217.14.73-.473a.5.5 0 0 1 .4.8l-.1.066a7.229 7.229 0 0 1 .2.164 1.84 1.84 0 0 0 2.257.653A8.216 8.216 0 0 0 8 16c2.586 0 4.8-.95 6.478-2.58.455-.443.703-.9.703-1.42 0-2.486-1.814-6.988-5-7zm1.085 4.54a.75.75 0 0 0-1.17-.677l-1.5 2a.75.75 0 0 0 .584 1.258h.59a.75.75 0 0 0 0-1.5h-.47l.95-.567 1.21.724a.75.75 0 0 0 1.02-.279z'/%3E%3C/svg%3E") no-repeat left center;
+    background-size: 20px 20px;
+    position: absolute;
+    left: 0;
+    top: 4px; 
+    width: 20px;
+    height: 20px;
+}
+/* --- 3. SECCIÓN: ACERCA DE NOSOTROS (Misión, Visión, Valores) --- */
+#acerca-de-nosotros {
+    background-color: white; 
+    padding: 80px 10%;
+    text-align: center; 
+}
+
+/* Estilo MEJORADO para el subtítulo "Valores Fundamentales" */
+.section-title-alt {
+    color: #1a2a4a; 
+    font-size: 2rem; 
+    font-weight: 700;
+    margin-top: 50px; 
+    margin-bottom: 40px; 
+    position: relative;
+    display: inline-block; 
+}
+
+.section-title-alt::after {
+    content: '';
+    display: block;
+    width: 120%; 
+    height: 5px;
+    background-color: #3a538a; 
+    margin: 10px auto 0;
+    border-radius: 2.5px;
+    position: relative;
+    left: -10%; 
+}
+
+
+.mision-vision-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+.mision-vision-box {
+    flex: 1;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #f5f5f5; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease;
+    min-width: 300px;
+}
+.mision-vision-box:hover {
+    transform: translateY(-5px);
+}
+.mision-vision-box h3 {
+    color: #3a538a; 
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.5rem;
+    position: static; 
+}
+.valores-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+.valor-item {
+    background-color: #eef2f7; 
+    padding: 20px;
+    border-radius: 8px;
+    flex-basis: calc(33% - 20px); 
+    text-align: left;
+    min-width: 200px;
+    transition: background-color 0.3s;
+}
+.valor-item strong {
+    color: #1a2a4a; 
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* --- 4. SECCIÓN CONTACTO --- */
+#contacto {
+    background-color: #1a2a4a; 
+    color: white;
+    padding: 80px 5%; 
+    text-align: center;
+}
+#contacto h2 {
+    color: white; 
+    font-size: 2.5rem;
+    margin-bottom: 40px; 
+}
+.contact-content-wrapper {
+    max-width: 900px; 
+    margin: 0 auto; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 30px; 
+}
+.contact-info {
+    flex: 1;
+    text-align: center;
+    min-width: 300px; 
+}
+.contact-info strong {
+    color: #a3b7e0; 
+    display: block;
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+.contact-link {
+    color: #a3b7e0; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.contact-link:hover {
+    color: #eef2f7;
+}
+.contact-image {
+    max-width: 150px; 
+    height: auto;
+    border-radius: 8px; 
+}

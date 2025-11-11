@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Presentación - SY Secure</title>
+    <link rel="stylesheet" href="styles.css"> 
+
+    <script>
+        let allAudios = [];
+        let isMuted = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar el array de audios
+            allAudios = [
+                document.getElementById("contactAudio"),
+                document.getElementById("selectionAudio"),
+                document.getElementById("presentacionAudio"),
+                document.getElementById("caracteristicasAudio"), 
+                document.getElementById("acercaAudio"),
+                document.getElementById("buyAudio") 
+            ];
+            
+            // Asignar la función de manejo de clics a todos los enlaces de navegación
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    if (this.hasAttribute('data-audio-id')) {
+                        event.preventDefault(); // Detiene el salto inmediato
+                        const audioId = this.getAttribute('data-audio-id');
+                        const targetId = this.getAttribute('href');
+                        handleClickAndPlay(audioId, targetId);
+                    }
+                });
+            });
+        });
+
+        // --- FUNCIÓN CLAVE PARA REPRODUCIR Y HACER SCROLL (Retrasa el salto 300ms) ---
+        function handleClickAndPlay(audioId, targetId) {
+            const audio = document.getElementById(audioId);
+            
+            if (!isMuted && audio) {
+                audio.pause();
+                audio.currentTime = 0;
+                
+                audio.play().catch(error => {
+                    console.error("Error al intentar reproducir el audio:", error);
+                    window.location.href = targetId;
+                });
+
+                // Retrasa el salto de sección para darle tiempo al audio a iniciarse
+                setTimeout(() => {
+                    window.location.href = targetId;
+                }, 300); 
+
+            } else {
+                // Si está silenciado o no hay audio, salta inmediatamente
+                window.location.href = targetId;
+            }
+        }
+        
+        // --- FUNCIÓN: Audio de Selección (Al pasar el ratón) ---
+        function playSelectionSound() {
+            var audio = document.getElementById("selectionAudio");
+            if (!isMuted) {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.play().catch(() => {});
+            }
+        }
+
+        // --- FUNCIÓN: MUTE GLOBAL ---
+        function toggleMute() {
+            isMuted = !isMuted; 
+
+            const muteButton = document.getElementById('muteButton');
+            
+            allAudios.forEach(audio => {
+                audio.muted = isMuted; 
+                if (isMuted) {
+                    audio.pause(); 
+                    audio.currentTime = 0;
+                }
+            });
+
+            // Cambiar el icono del botón
+            if (isMuted) {
+                muteButton.innerHTML = '🔇'; 
+            } else {
+                muteButton.innerHTML = '🔊'; 
+            }
+        }
+
+        // --- Funciones de Animación (Para el logo) ---
+        function resetAnimation(event) {
+            event.preventDefault(); 
+            
+            const car = document.getElementById('car-img');
+            const text = document.getElementById('text-img');
+            
+            car.classList.remove('animate');
+            text.classList.remove('animate');
+
+            void car.offsetWidth; 
+            void text.offsetWidth; 
+
+            car.classList.add('animate');
+            text.classList.add('animate');
+            
+            setTimeout(() => {
+                window.location.href = '#inicio'; 
+            }, 1000);
+        }
+
+        // Función para la animación inicial (al cargar la página)
+        window.onload = function() {
+            const car = document.getElementById('car-img');
+            const text = document.getElementById('text-img');
+            
+            car.classList.add('animate');
+            text.classList.add('animate');
+        };
+    </script>
+</head>
+<body>
+    
+    <audio id="contactAudio" src="Contacto.mp3" preload="auto"></audio>
+    <audio id="selectionAudio" src="Seleccion.mp3" preload="auto"></audio>
+    <audio id="presentacionAudio" src="Presentacion.wav" preload="auto"></audio> 
+    <audio id="caracteristicasAudio" src="Caracteristicas.wav" preload="auto"></audio> 
+    <audio id="acercaAudio" src="Acerca.mp3" preload="auto"></audio> 
+    <audio id="animationAudio" src="Animacion.mp3" preload="auto"></audio> 
+    <audio id="buyAudio" src="Comprar.mp3" preload="auto"></audio> 
+
+
+    <header class="header">
+        <div class="header-content">
+            
+            <a href="#inicio" onclick="resetAnimation(event)">
+                <img src="sy-secure-logo-small.png" alt="SYSecure Logo" class="header-logo">
+            </a>
+            
+            <div class="nav-links-container">
+                <a href="#presentacion" class="nav-link" data-audio-id="presentacionAudio" onmouseover="playSelectionSound()">Presentación</a>
+                <a href="#caracteristicas" class="nav-link" data-audio-id="caracteristicasAudio" onmouseover="playSelectionSound()">Características</a>
+                <a href="#acerca-de-nosotros" class="nav-link" data-audio-id="acercaAudio" onmouseover="playSelectionSound()">Acerca de Nosotros</a>
+                <a href="#contacto" class="nav-link" data-audio-id="contactAudio" onmouseover="playSelectionSound()">Contacto</a>
+                
+                <a href="#contacto" class="nav-link cta-button-header" data-audio-id="buyAudio" onmouseover="playSelectionSound()">Comprar</a>
+            </div>
+            
+            <button id="muteButton" class="mute-button" onclick="toggleMute()" aria-label="Silenciar o activar sonido">
+                🔊 
+            </button>
+
+        </div>
+    </header>
+
+
+    <section class="hero-section" id="inicio">
+        <div class="logo-animation-wrapper">
+            <img src="sy-secure-text.png" alt="Texto SYSecure" class="logo-image-text" id="text-img">
+            <img src="sy-secure-car.png" alt="Coche SYSecure" class="logo-image-car" id="car-img">
+        </div>
+    </section>
+
+    
+    <section class="content-section" id="presentacion">
+        <h2>SySecure: Seguridad Conectada y Robusta para tu Vehículo </h2>
+        <div class="product-intro-box">
+            <p>El SySecure es un avanzado sistema de seguridad diseñado para la protección integral de tu vehículo. Combina detección precisa con la conveniencia de la mensajería instantánea para ofrecerte tranquilidad constante, sin importar dónde te encuentres.</p>
+        </div>
+
+        <h3 class="product-subtitle">Funcionalidades Clave del SySecure</h3>
+        <div class="features-list-box">
+            <ul>
+                <li>**Detección Integral de Amenazas:** El SySecure es capaz de detectar **sonido (audio)** y la apertura de puertas o ventanas.</li>
+                <li>**Alerta Instantánea Vía Telegram:** Ante cualquier alarma (**sonido o apertura no autorizada**), el sistema envía alertas inmediatas al teléfono del propietario a través de un bot de Telegram, garantizando notificaciones rápidas y confiables.</li>
+                <li>**Monitoreo Constante (24/7):** El propietario puede monitorear su auto en todo momento y recibe la confirmación de las alertas directamente en la aplicación de Telegram ante cualquier intento de intrusión.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="content-section" id="caracteristicas">
+        <h2>Características Clave y Especificaciones</h2>
+        
+        <div class="features-text">
+            <p>Un listado de los beneficios principales que ofrece SYSecure a sus clientes. La seguridad y el control de tus bienes más preciados, al alcance de tu mano.</p>
+            <ul>
+                <li>Seguimiento en tiempo real con geolocalización avanzada.</li>
+                <li>Alertas de seguridad instantáneas ante movimientos o aperturas no autorizadas.</li>
+                <li>Reportes automatizados del historial de actividad y posición.</li>
+                <li>Fácil instalación y gestión a través de una aplicación intuitiva.</li>
+                <li>Batería de larga duración y resistencia a las condiciones ambientales.</li>
+            </ul>
+        </div>
+
+        <h3 class="product-subtitle">Diseño, Materiales y Compatibilidad</h3>
+        <div class="spec-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Detalle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>**Dimensiones y Peso**</td>
+                        <td>Volumen menor de 30 cm³ y un peso ligero de solo 200 gramos, facilitando su instalación discreta.</td>
+                    </tr>
+                    <tr>
+                        <td>**Materiales**</td>
+                        <td>Construido con circuitos electrónicos de desempeño confiable y una carcasa de polímero de alta resistencia.</td>
+                    </tr>
+                    <tr>
+                        <td>**Resistencia**</td>
+                        <td>Fabricado con materiales resistentes al clima y al uso constante, garantizando durabilidad, protección frente a impactos y condiciones ambientales, manteniendo la eficiencia operativa.</td>
+                    </tr>
+                    <tr>
+                        <td>**Estética y Ubicación**</td>
+                        <td>Diseño discreto en colores negros. Se instala en la zona del estéreo, con sensores de sonido y detección de apertura de puertas/ventanas.</td>
+                    </tr>
+                    <tr>
+                        <td>**Instalación**</td>
+                        <td>Autoinstalable con un manual detallado y mantenimiento sencillo.</td>
+                    </tr>
+                    <tr>
+                        <td>**Compatibilidad**</td>
+                        <td>Se integra con la mayoría de modelos de vehículos, incluyendo autos modernos y antiguos.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="content-section" id="acerca-de-nosotros">
+        <h2>Acerca de Nosotros: Nuestra Identidad</h2>
+        
+        <div class="mision-vision-container">
+            <div class="mision-vision-box">
+                <h3>Misión</h3>
+                <p>Ofrecer tranquilidad a cada conductor mediante **tecnología de seguridad vehicular confiable**, accesible y fácil de usar, protegiendo su patrimonio y a quienes más importan.</p>
+            </div>
+
+            <div class="mision-vision-box">
+                <h3>Visión</h3>
+                <p>Convertirnos en la empresa líder y el **referente de confianza** en seguridad vehicular conectada en México, reconocidos por la innovación de nuestros productos y nuestra cultura de colaboración y transparencia.</p>
+            </div>
+        </div>
+
+        <div class="section-title-alt">Valores Fundamentales</div>
+        <div class="valores-grid">
+            <div class="valor-item">
+                <strong>Innovación al Servicio de la Gente</strong>
+                <p>Desarrollamos tecnología de punta para hacer la vida de nuestros usuarios más simple y segura, no más compleja.</p>
+            </div>
+            <div class="valor-item">
+                <strong>Colaboración y Transparencia</strong>
+                <p>Fomentamos un entorno de confianza, compartiendo ideas y comunicándonos con honestidad radical para impulsar la verdadera innovación.</p>
+            </div>
+            <div class="valor-item">
+                <strong>Accesibilidad</strong>
+                <p>Creemos que la seguridad no es un lujo. Mantenemos precios justos y productos fáciles de instalar para que nadie tenga problemas para protegerse.</p>
+            </div>
+            <div class="valor-item">
+                <strong>Integridad</strong>
+                <p>La confianza de nuestros clientes y equipo es nuestro mayor tesoro. Operamos con total transparencia y protegemos la privacidad al más alto nivel.</p>
+            </div>
+            <div class="valor-item">
+                <strong>Simplicidad</strong>
+                <p>Cada interacción para clientes y colaboradores debe ser intuitiva, rápida y sin complicaciones.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="contacto">
+        <h2>¿Listo para proteger tu vehículo?</h2>
+        
+        <div class="contact-content-wrapper">
+            
+            <img src="contacto.png" alt="Icono de Contacto" class="contact-image">
+
+            <div class="contact-info">
+                <p>Para más información, soporte o para adquirir **SYSecure**, no dudes en contactarnos directamente:</p>
+                
+                <strong>Persona de contacto</strong>
+                <p>Axel Fernando Castañeda Flores</p>
+
+                <strong>Teléfono</strong>
+                <p>
+                    <a href="tel:+523921122492" class="contact-link">+52 392 112 24 92</a>
+                </p>
+
+                <strong>Email</strong>
+                <p>
+                    <a href="mailto:sysecureoficial@gmail.com" class="contact-link">sysecureoficial@gmail.com</a>
+                </p>
+            </div>
+        </div>
+        
+    </section>
+
+</body>
+</html>
