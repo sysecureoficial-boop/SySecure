@@ -73,7 +73,7 @@ body {
     margin-left: 5px; 
     /* AJUSTE CLAVE para evitar que el texto se corte en el botón */
     padding: 10px 15px !important; 
-    line-height: 1; /* Asegura el espacio vertical */
+    line-height: 1; 
 }
 .cta-button-header:hover {
     background-color: #2a3c6b; 
@@ -416,16 +416,16 @@ body {
     max-width: 900px; 
     margin: 0 auto; 
     display: flex;
-    /* Cambio clave para Desktop: alinear en fila y centrar elementos */
+    /* Desktop: se muestra en fila (Imagen y luego Info) */
     flex-direction: row; 
     justify-content: center;
     align-items: center; 
-    gap: 50px; /* Aumento del espacio entre imagen y texto */
-    text-align: left; /* Asegura que el texto se alinee a la izquierda */
+    gap: 50px; 
+    text-align: left; 
 }
 .contact-info {
     flex: 1;
-    text-align: left; /* Alineación del texto a la izquierda en desktop */
+    text-align: left; 
     min-width: 300px; 
 }
 .contact-info p {
@@ -451,7 +451,6 @@ body {
     max-width: 150px; 
     height: auto;
     border-radius: 8px; 
-    /* Eliminar cualquier ancho fijo que cause problemas */
     width: auto;
     flex-shrink: 0;
 }
@@ -599,7 +598,7 @@ body {
 
     /* --- SECCIÓN CONTACTO (Móvil) --- */
     .contact-content-wrapper {
-        /* Cambio clave: Forzar a columna en móvil */
+        /* Forzar a columna en móvil */
         flex-direction: column; 
         gap: 20px;
     }
