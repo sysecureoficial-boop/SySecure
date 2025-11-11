@@ -536,7 +536,7 @@ body {
         flex-basis: 100%; /* Ocupa todo el ancho */
     }
 
-    /* --- TABLA DE ESPECIFICACIONES --- */
+    /* --- TABLA DE ESPECIFICACIONES (El bloque clave para la corrección de la imagen) --- */
     .spec-table-container {
         /* Permite el scroll horizontal si la tabla es demasiado ancha (aunque ya está simplificada) */
         overflow-x: auto;
@@ -565,7 +565,7 @@ body {
         padding-left: 50%; /* Espacio para la etiqueta */
         text-align: right;
     }
-    /* Muestra el contenido de <td> como etiqueta usando el atributo data-label */
+    /* Muestra el contenido de <td> como etiqueta usando el atributo data-label del HTML */
     .spec-table-container td:before {
         content: attr(data-label);
         position: absolute;
@@ -580,11 +580,16 @@ body {
     .spec-table-container td:first-child {
         text-align: right;
     }
+    /* El primer td de cada fila no necesita el pseudo-elemento :before ya que ya es el aspecto */
     .spec-table-container td:first-child:before {
-        content: 'Aspecto'; 
+        content: ''; 
+        width: 0;
+        padding: 0;
     }
-    
-    /* El truco de data-label requiere modificar el HTML, si no se hace, el estilo es solo una lista. */
+    .spec-table-container tr:last-child td:last-child {
+        border-bottom: none; /* Elimina la línea inferior del último elemento */
+    }
+
 
     /* --- SECCIÓN CONTACTO --- */
     .contact-info strong {
