@@ -71,7 +71,6 @@ body {
     white-space: nowrap; 
     flex-shrink: 0;
     margin-left: 5px; 
-    /* AJUSTE CLAVE para evitar que el texto se corte en el botón */
     padding: 10px 15px !important; 
     line-height: 1; 
 }
@@ -413,20 +412,19 @@ body {
     margin-bottom: 40px; 
 }
 .contact-content-wrapper {
-    max-width: 900px; 
+    max-width: 500px; /* Reducimos el ancho máximo para centrar el bloque de texto */
     margin: 0 auto; 
     display: flex;
-    /* Desktop: se muestra en fila (Imagen y luego Info) */
+    /* Mantenemos row, aunque solo haya un elemento */
     flex-direction: row; 
     justify-content: center;
     align-items: center; 
-    gap: 50px; 
-    text-align: left; 
+    gap: 0; 
+    text-align: center; /* Centramos todo el contenido restante */
 }
 .contact-info {
-    flex: 1;
-    text-align: left; 
-    min-width: 300px; 
+    width: 100%;
+    text-align: center; /* Centramos el texto dentro del bloque */
 }
 .contact-info p {
     margin-top: 5px;
@@ -447,13 +445,9 @@ body {
 .contact-link:hover {
     color: #eef2f7;
 }
-.contact-image {
-    max-width: 150px; 
-    height: auto;
-    border-radius: 8px; 
-    width: auto;
-    flex-shrink: 0;
-}
+
+/* Las reglas para .contact-image han sido eliminadas */
+
 
 /* ======================================= */
 /* ====== RESPONSIVIDAD (MÓVIL Y TABLET) ====== */
@@ -601,11 +595,6 @@ body {
         /* Forzar a columna en móvil */
         flex-direction: column; 
         gap: 20px;
-    }
-    .contact-image {
-        /* Centrar la imagen en móvil */
-        margin: 0 auto;
-        display: block;
     }
     .contact-info {
         text-align: center; /* Centrar el texto en móvil */
