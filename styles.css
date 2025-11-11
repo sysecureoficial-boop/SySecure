@@ -311,7 +311,7 @@ body {
 }
 .features-text li::before {
     content: "";
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%233a538a' class='bi bi-shield-lock-fill' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 0c-.69 0-1.843.265-2.928.707A3.593 3.593 0 0 0 5.176 1H5C1.815 1 0 5.488 0 8a8.214 8.214 0 0 0 1.25 4.36l-.375-.24a.5.5 0 0 1 .4-.8l.217.14.73-.473a.5.5 0 0 1 .4.8l-.1.066a7.229 7.229 0 0 1 .2.164 1.84 1.84 0 0 0 2.257.653A8.216 8.216 0 0 0 8 16c2.586 0 4.8-.95 6.478-2.58.455-.443.703-.9.703-1.42 0-2.486-1.814-6.988-5-7zm1.085 4.54a.75.75 0 0 0-1.17-.677l-1.5 2a.75.75 0 0 0 .584 1.258h.59a.75.75 0 0 0 0-1.5h-.47l.95-.567 1.21.724a.75.75 0 0 0 1.02-.279z'/%3E%3C/svg%3E") no-repeat left center;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%233a538a' class='bi bi-shield-lock-fill' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 0c-.69 0-1.843.265-2.928.707A3.593 3.593 0 0 0 5.176 1H5C1.815 1 0 5.488 0 8a8.214 8.214 0 0 0 1.25 4.36l-.375-.24a.5.5 0 0 1 .4-.8l.217.14.73-.473a.5.5 0 0 1 .4.8l-.1.066a7.229 7.229 0 0 1 .2.164 1.84 1.84 0 0 0 2.257.653A8.216 8.216 0 0 0 8 16c2.586 0 4.8-.95 6.478-2.58.455-.443.703-.9.703-1.42 0-2.486-1.814-6-7zm1.085 4.54a.75.75 0 0 0-1.17-.677l-1.5 2a.75.75 0 0 0 .584 1.258h.59a.75.75 0 0 0 0-1.5h-.47l.95-.567 1.21.724a.75.75 0 0 0 1.02-.279z'/%3E%3C/svg%3E") no-repeat left center;
     background-size: 20px 20px;
     position: absolute;
     left: 0;
@@ -443,4 +443,152 @@ body {
     max-width: 150px; 
     height: auto;
     border-radius: 8px; 
+}
+
+/* ======================================= */
+/* ====== RESPONSIVIDAD (MÓVIL Y TABLET) ====== */
+/* ======================================= */
+
+@media screen and (max-width: 768px) {
+    
+    /* Ajuste de padding en todas las secciones */
+    .content-section {
+        padding: 50px 5%;
+    }
+
+    /* --- HEADER Y NAVEGACIÓN --- */
+    .header {
+        height: auto;
+    }
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+        height: auto;
+    }
+    .header-logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .nav-links-container {
+        /* Fuerza la navegación a ocupar todo el ancho y a apilarse verticalmente */
+        width: 100%;
+        flex-wrap: wrap; 
+        justify-content: center;
+        padding-right: 0;
+        gap: 5px 10px; 
+        margin-bottom: 5px;
+    }
+    .nav-link {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+    }
+    .cta-button-header {
+        /* Asegura que el botón se ajuste y no rompa el diseño */
+        padding: 5px 10px !important;
+        font-size: 0.9rem;
+    }
+    .mute-button {
+        position: static; /* Mueve el botón de mute al final para que no tape nada */
+        margin-top: 10px;
+    }
+
+    /* Ajuste de padding al body para el header expandido */
+    body {
+        padding-top: 150px; /* Ajusta este valor si el header cambia de altura */
+    }
+
+    /* --- SECCIÓN HERO --- */
+    .hero-section {
+        min-height: 70vh;
+    }
+    .logo-animation-wrapper {
+        width: 100%; 
+        height: 100px; 
+        max-width: 350px; 
+    }
+    .logo-image-car {
+        width: 250px; /* Coche más pequeño */
+    }
+
+    /* --- TÍTULOS Y SUBTÍTULOS --- */
+    .content-section h2 {
+        font-size: 2rem;
+    }
+    .product-subtitle {
+        font-size: 1.5rem;
+    }
+
+    /* --- MISIÓN / VISIÓN / VALORES --- */
+    .mision-vision-container {
+        /* Convierte la caja de Misión/Visión en una columna */
+        flex-direction: column;
+        gap: 20px;
+    }
+    .mision-vision-box {
+        min-width: auto;
+    }
+    .valores-grid {
+        /* Convierte la cuadrícula de valores a una columna */
+        flex-direction: column;
+    }
+    .valor-item {
+        flex-basis: 100%; /* Ocupa todo el ancho */
+    }
+
+    /* --- TABLA DE ESPECIFICACIONES --- */
+    .spec-table-container {
+        /* Permite el scroll horizontal si la tabla es demasiado ancha (aunque ya está simplificada) */
+        overflow-x: auto;
+    }
+    .spec-table-container table,
+    .spec-table-container thead,
+    .spec-table-container tbody,
+    .spec-table-container th,
+    .spec-table-container td,
+    .spec-table-container tr {
+        display: block;
+    }
+    /* Estilo para simular una lista en la tabla */
+    .spec-table-container thead tr {
+        display: none; /* Oculta la cabecera de la tabla */
+    }
+    .spec-table-container tr {
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background-color: white !important; /* Asegura el fondo blanco */
+    }
+    .spec-table-container td {
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%; /* Espacio para la etiqueta */
+        text-align: right;
+    }
+    /* Muestra el contenido de <td> como etiqueta usando el atributo data-label */
+    .spec-table-container td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #3a538a;
+    }
+    .spec-table-container td:first-child {
+        text-align: right;
+    }
+    .spec-table-container td:first-child:before {
+        content: 'Aspecto'; 
+    }
+    
+    /* El truco de data-label requiere modificar el HTML, si no se hace, el estilo es solo una lista. */
+
+    /* --- SECCIÓN CONTACTO --- */
+    .contact-info strong {
+        font-size: 1rem;
+    }
+
 }
